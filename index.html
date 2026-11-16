@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101827" />
+  <title>DevFix — Developer Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="DevFix home">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>Dev<span class="brand-accent">Fix</span></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav">
+        <a class="nav-item active" href="#workspace"><span class="nav-icon">⌘</span> Code workspace</a>
+        <a class="nav-item" href="#guide"><span class="nav-icon">▤</span> Debugging guide</a>
+      </nav>
+
+      <div class="sidebar-card">
+        <div class="sidebar-card-icon">✦</div>
+        <strong>Debug smarter.</strong>
+        <p>Understand common errors and get practical next steps.</p>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        Ready to analyse
+        <span class="version">v1.0</span>
+      </div>
+    </aside>
+
+    <main class="main-content" id="workspace">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">DEVELOPER TOOLKIT</div>
+          <h1>Code workspace</h1>
+          <p class="subtitle">Find the issue. Understand it. Fix it.</p>
+        </div>
+        <div class="topbar-right">
+          <span class="local-badge"><span class="status-dot"></span> Local analysis</span>
+          <div class="avatar">D</div>
+        </div>
+      </header>
+
+      <section class="welcome-strip">
+        <div>
+          <div class="welcome-kicker">YOUR PERSONAL DEBUGGING DESK</div>
+          <h2>What are we fixing today?</h2>
+          <p>Paste your JavaScript code or an error message below to get started.</p>
+        </div>
+        <div class="welcome-symbol">&lt; / &gt;</div>
+      </section>
+
+      <section class="editor-grid">
+        <article class="panel editor-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="step-label">01 / INPUT</span>
+              <h3>Code editor</h3>
+            </div>
+            <div class="heading-actions">
+              <span class="language-pill">JavaScript</span>
+              <button class="text-button" id="clearBtn" type="button">Clear all</button>
+            </div>
+          </div>
+
+          <label class="field-label" for="codeInput">PASTE YOUR CODE</label>
+          <div class="editor-wrap">
+            <div class="line-gutter" id="lineNumbers">1</div>
+            <textarea id="codeInput" spellcheck="false" autocapitalize="off"
+              autocomplete="off" placeholder="// Paste your JavaScript code here...&#10;&#10;function greet(name) {&#10;  console.log('Hello ' + name);&#10;}&#10;&#10;greet('Developer');"></textarea>
+          </div>
+          <div class="editor-meta">
+            <span id="lineCount">1 line</span>
+            <span>JavaScript · Static checks</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <label class="field-label" for="errorInput">ERROR MESSAGE <span class="optional">OPTIONAL</span></label>
+          <textarea id="errorInput" class="error-input" rows="3"
+            placeholder="Paste the error message from your browser or terminal..."></textarea>
+
+          <div class="editor-actions">
+            <button class="primary-button" id="analyzeBtn" type="button">
+              <span>✦</span> Analyse code
+            </button>
+            <button class="secondary-button" id="sampleBtn" type="button">Try sample code</button>
+          </div>
+          <p class="privacy-note">Your code is analysed in this browser. It is not uploaded to a server.</p>
+        </article>
+
+        <article class="panel results-panel" aria-live="polite">
+          <div class="panel-heading">
+            <div>
+              <span class="step-label">02 / RESULTS</span>
+              <h3>Analysis report</h3>
+            </div>
+            <span class="report-icon">⌁</span>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-illustration"><span>{ }</span><i>✦</i></div>
+            <h4>Your report will appear here</h4>
+            <p>Run an analysis to see detected issues, explanations and suggested fixes.</p>
+            <div class="empty-tip"><span>TIP</span> Include the exact error message for more useful guidance.</div>
+          </div>
+
+          <div id="results" class="results-content hidden">
+            <div class="summary-row">
+              <div>
+                <div class="summary-number" id="issueCount">0</div>
+                <div class="summary-caption">Potential issues found</div>
+              </div>
+              <span class="result-status" id="resultStatus">Analysis complete</span>
+            </div>
+            <div id="issueList" class="issue-list"></div>
+            <div id="cleanMessage" class="clean-message hidden">
+              <span class="clean-check">✓</span>
+              <div><strong>No matching issues detected</strong><p>That doesn't guarantee the code is bug-free. Test it in your development environment.</p></div>
+            </div>
+            <div class="report-footnote">DevFix uses lightweight pattern checks, not a full compiler or runtime.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="guide-section" id="guide">
+        <div class="section-heading">
+          <div><span class="step-label">03 / LEARN</span><h3>Quick debugging guide</h3></div>
+          <span class="section-note">A few habits that save time</span>
+        </div>
+        <div class="guide-grid">
+          <div class="guide-card"><span class="guide-number">01</span><h4>Read the first error</h4><p>Start with the earliest error in the console. Later errors may be consequences of the first one.</p></div>
+          <div class="guide-card"><span class="guide-number">02</span><h4>Check the line number</h4><p>Inspect the reported line and the lines immediately before it for missing brackets or punctuation.</p></div>
+          <div class="guide-card"><span class="guide-number">03</span><h4>Test one change</h4><p>Make one small change at a time, then run your code again to confirm what fixed the problem.</p></div>
+        </div>
+      </section>
+
+      <footer class="page-footer"><span>DEVFIX</span> Built for clearer, calmer debugging. <span class="footer-right">Your code stays on your device.</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
